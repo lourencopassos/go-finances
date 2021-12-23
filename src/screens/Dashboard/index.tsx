@@ -1,4 +1,5 @@
 import React from 'react';
+import { HighLightCard } from '../../components/HighlightCard';
 
 import * as Styled from './styles';
 
@@ -21,6 +22,12 @@ export function Dashboard() {
           <Styled.Icon name='power' />
         </Styled.UserWrapper>
       </Styled.Header>
+
+      <Styled.HighlightCards>
+        <HighLightCard />
+        <HighLightCard />
+        <HighLightCard />
+      </Styled.HighlightCards>
     </Styled.Container>
   );
 }
