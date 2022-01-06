@@ -43,6 +43,9 @@ export function Dashboard() {
           type='total'
         />
       </Styled.HighlightCards>
+      <Styled.Transactions>
+        <Styled.Title>Listagem</Styled.Title>
+      </Styled.Transactions>
     </Styled.Container>
   );
 }
