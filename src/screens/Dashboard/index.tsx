@@ -24,10 +24,28 @@ export function Dashboard() {
       </Styled.Header>
 
       <Styled.HighlightCards>
-        <HighLightCard />
-        <HighLightCard />
-        <HighLightCard />
+        <HighLightCard
+          title='Entrada'
+          amount='R$ 17.400,00'
+          lastTransaction='Última entrada dia 13 de abril'
+          type='up'
+        />
+        <HighLightCard
+          title='Saída'
+          amount='R$ 2.000'
+          lastTransaction='Última entrada dia 13 de abril'
+          type='down'
+        />
+        <HighLightCard
+          title='Entrada'
+          amount='R$ 17.400,00'
+          lastTransaction='Última entrada dia 13 de abril'
+          type='total'
+        />
       </Styled.HighlightCards>
+      <Styled.Transactions>
+        <Styled.Title>Listagem</Styled.Title>
+      </Styled.Transactions>
     </Styled.Container>
   );
 }
