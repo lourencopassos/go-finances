@@ -76,3 +76,5 @@ export const Transactions = styled.View`
   padding: 0 24px;
   margin-top: ${RFPercentage(12)}px;
 `;
+
+export const TransactionsList = styled.FlatList``;
