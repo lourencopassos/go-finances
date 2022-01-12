@@ -18,8 +18,18 @@ export function Register() {
         <Input placeholder='Nome' />
         <Input placeholder='Preço' />
         <TransactionTypes>
-          <TransactionTypeButton type='up' title='Income' onPress={() => handleTransactionTypeSelect('up')} />
-          <TransactionTypeButton type='down' title='Outcome' onPress={() => () => handleTransactionTypeSelect('down')} }/>
+          <TransactionTypeButton
+            type='up'
+            title='Income'
+            onPress={() => handleTransactionTypeSelect('up')}
+            isActive={transactionType === 'up'}
+          />
+          <TransactionTypeButton
+            type='down'
+            title='Outcome'
+            onPress={() => handleTransactionTypeSelect('down')}
+            isActive={transactionType === 'down'}
+          />
         </TransactionTypes>
       </Fields>
       <Button title='Adicionar' />
