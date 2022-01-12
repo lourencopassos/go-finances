@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../components/Form/Button';
 import { TransactionTypeButton } from '../../components/TransactionTypeButton';
 import { Input } from '../../components/Form/Input';
 import { Container, Header, Title, Fields, TransactionTypes } from './styles';
