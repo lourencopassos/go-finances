@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button } from '../../components/Form/Button';
 import { TransactionTypeButton } from '../../components/TransactionTypeButton';
+import { CategorySelect } from '../../components/Form/CategorySelect';
 import { Input } from '../../components/Form/Input';
 import { Container, Header, Title, Fields, TransactionTypes } from './styles';
 
