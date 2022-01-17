@@ -22,7 +22,7 @@ export function TransactionTypeButton({
   return (
     <Container {...rest} isActive={isActive} type={type}>
       <Icon name={icons[type]} type={type} />
-      <Title>{title}</Title>
+      <Title>{title} </Title>
     </Container>
   );
 }
