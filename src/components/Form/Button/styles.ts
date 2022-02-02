@@ -1,13 +1,13 @@
 import styled from 'styled-components/native';
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
-import { Props } from '.';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { RectButton } from 'react-native-gesture-handler';
 
-export const Container = styled(TouchableOpacity)`
+export const Container = styled(RectButton)`
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.seconday};
+  background-color: ${({ theme }) => theme.colors.secondary};
   border-radius: 5px;
   align-items: center;
+  padding: 18px;
 `;
 
 export const Title = styled.Text`

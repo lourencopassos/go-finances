@@ -50,7 +50,9 @@ export function Dashboard() {
               <Styled.UserName>Lourenço</Styled.UserName>
             </Styled.User>
           </Styled.UserInfo>
-          <Styled.Icon name='power' />
+          <Styled.LogoutButton onPress={() => {}}>
+              <Styled.Icon name='power' />
+          </Styled.LogoutButton>
         </Styled.UserWrapper>
       </Styled.Header>
 
