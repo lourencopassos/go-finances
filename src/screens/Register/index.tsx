@@ -91,7 +91,13 @@ export function Register() {
       date: new Date()
     };
 
-    validateForm(newTransaction);
+    if (!newTransaction.transactionType) {
+      return Alert.alert('Selecione o tipo de transação');
+    }
+
+    if (newTransaction.category.key === 'category') {
+      return Alert.alert('Selecione a categoria');
+    }
 
     try {
       const data = await AsyncStorage.getItem(dataKey);
@@ -109,15 +115,6 @@ export function Register() {
     }
   }
 
-  function validateForm(form: FormData) {
-    if (!form.transactionType) {
-      return Alert.alert('Selecione o tipo de transação');
-    }
-
-    if (form.category === 'category') {
-      return Alert.alert('Selecione a categoria');
-    }
-  }
   return (
     <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
       <Container>
