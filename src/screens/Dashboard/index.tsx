@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { HighLightCard } from '../../components/HighlightCard';
-import { TransactionCard, TransactionCardProps } from '../../components/TransactionCard';
+import {
+  TransactionCard,
+  TransactionCardProps,
+} from '../../components/TransactionCard';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import * as Styled from './styles';
 
@@ -9,32 +13,20 @@ export interface DataListProps extends TransactionCardProps {
 }
 
 export function Dashboard() {
-  const data: DataListProps[] = [
-    {
-      id: '1',
-      type: 'positive',
-      title: 'Desenvolvimento de site',
-      amount: 'R$ 12.000',
-      category: { name: 'Vendas', icon: 'dollar-sign' },
-      date: '13/04/2020',
-    },
-    {
-      id: '2',
-      type: 'negative',
-      title: 'Pizzaria',
-      amount: 'R$ 65',
-      category: { name: 'Vendas', icon: 'coffee' },
-      date: '13/04/2020',
-    },
-    {
-      id: '3',
-      type: 'negative',
-      title: 'Pagamento Aluguel',
-      amount: 'R$ 1.200',
-      category: { name: 'Vendas', icon: 'shopping-bag' },
-      date: '13/04/2020',
-    },
-  ];
+  const [data, setData] = useState<DataListProps[]>([]);
+
+  async function fetchTransactions() {
+    const dataKey = '@gofinances:transactions';
+
+    const transactions = await AsyncStorage.getItem(dataKey)
+
+
+  }
+
+  useEffect(() => {
+    fetchTransactions();
+  })
+
   return (
     <Styled.Container>
       <Styled.Header>
@@ -51,7 +43,7 @@ export function Dashboard() {
             </Styled.User>
           </Styled.UserInfo>
           <Styled.LogoutButton onPress={() => {}}>
-              <Styled.Icon name='power' />
+            <Styled.Icon name='power' />
           </Styled.LogoutButton>
         </Styled.UserWrapper>
       </Styled.Header>

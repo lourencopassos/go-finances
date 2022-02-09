@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Alert, Modal, TouchableWithoutFeedback } from 'react-native';
 import { useForm } from 'react-hook-form';
 import uuid from 'react-native-uuid';
@@ -52,15 +52,6 @@ export function Register() {
 
   const navigation = useNavigation();
 
-  const dataKey = '@gofinances:transactions';
-
-  useEffect(() => {
-    async function loadData() {
-      const data = await AsyncStorage.getItem(dataKey);
-    }
-    loadData();
-  }, []);
-
   const handleTransactionTypeSelect = (
     transactionTypeSelected: 'up' | 'down'
   ) => {
@@ -82,6 +73,7 @@ export function Register() {
   }
 
   async function handleRegister(form: FormData) {
+    const dataKey = '@gofinances:transactions';
     const newTransaction = {
       id: String(uuid.v4()),
       name: form.name,
