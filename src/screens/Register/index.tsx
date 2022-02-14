@@ -53,7 +53,7 @@ export function Register() {
   const navigation = useNavigation();
 
   const handleTransactionTypeSelect = (
-    transactionTypeSelected: 'up' | 'down'
+    transactionTypeSelected: 'positive' | 'negative'
   ) => {
     setTransactionType(transactionTypeSelected);
   };
@@ -134,14 +134,14 @@ export function Register() {
               <TransactionTypeButton
                 type='up'
                 title='Income'
-                onPress={() => handleTransactionTypeSelect('up')}
-                isActive={transactionType === 'up'}
+                onPress={() => handleTransactionTypeSelect('positive')}
+                isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 type='down'
                 title='Outcome'
-                onPress={() => handleTransactionTypeSelect('down')}
-                isActive={transactionType === 'down'}
+                onPress={() => handleTransactionTypeSelect('negative')}
+                isActive={transactionType === 'negative'}
               />
             </TransactionTypes>
             <CategorySelectButton
