@@ -33,9 +33,9 @@ export const ChartContainer = styled.View`
 export const MonthSelect = styled.View`
 width: 100%;
 
-flex-direction: 'row';
-justify-content: 'center';
-align-items: 'center';
+flex-direction: row;
+justify-content: center;
+align-items: center;
 margin-top: 24px;
 `;
 
