@@ -69,7 +69,7 @@ export function Register() {
   function resetForm() {
     reset();
     setTransactionType('');
-    setCategorySelected({key: 'category', name: 'Categoria'})
+    setCategorySelected({ key: 'category', name: 'Categoria' });
   }
 
   async function handleRegister(form: FormData) {
@@ -78,16 +78,16 @@ export function Register() {
       id: String(uuid.v4()),
       name: form.name,
       amount: form.amount,
-      category: categorySelected,
-      transactionType,
-      date: new Date()
+      category: categorySelected.key,
+      type: transactionType,
+      date: new Date(),
     };
 
-    if (!newTransaction.transactionType) {
+    if (!newTransaction.type) {
       return Alert.alert('Selecione o tipo de transação');
     }
 
-    if (newTransaction.category.key === 'category') {
+    if (newTransaction.category === 'category') {
       return Alert.alert('Selecione a categoria');
     }
 
@@ -95,10 +95,7 @@ export function Register() {
       const data = await AsyncStorage.getItem(dataKey);
       const currentData = data ? JSON.parse(data) : [];
 
-      const dataFormatted = [
-        ...currentData,
-        newTransaction,
-      ];
+      const dataFormatted = [...currentData, newTransaction];
       await AsyncStorage.setItem(dataKey, JSON.stringify(dataFormatted));
       resetForm();
       navigation.navigate('Listagem');
@@ -133,13 +130,13 @@ export function Register() {
             <TransactionTypes>
               <TransactionTypeButton
                 type='up'
-                title='Income'
+                title='Entrada'
                 onPress={() => handleTransactionTypeSelect('positive')}
                 isActive={transactionType === 'positive'}
               />
               <TransactionTypeButton
                 type='down'
-                title='Outcome'
+                title='Saída'
                 onPress={() => handleTransactionTypeSelect('negative')}
                 isActive={transactionType === 'negative'}
               />

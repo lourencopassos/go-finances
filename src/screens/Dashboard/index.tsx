@@ -40,6 +40,12 @@ export function Dashboard() {
     const response = await AsyncStorage.getItem(dataKey);
     const transactions = response ? JSON.parse(response) : [];
 
+    if (!response) {
+      setTransactions([]);
+      setIsLoading(false);
+      return;
+    }
+
     let entriesTotalSum = 0;
     let totalExpenses = 0;
     let total = 0;
@@ -136,7 +142,7 @@ export function Dashboard() {
 
   useEffect(() => {
     fetchTransactions();
-  });
+  }, []);
 
   useFocusEffect(
     useCallback(() => {
@@ -199,7 +205,7 @@ export function Dashboard() {
               keyExtractor={(item: DataListProps) => item.id}
               renderItem={({ item }) => <TransactionCard data={item} />}
             />
-          </Styled.Transactions>{' '}
+          </Styled.Transactions>
         </>
       )}
     </Styled.Container>
