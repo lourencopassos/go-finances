@@ -18,6 +18,7 @@ export interface DataListProps extends TransactionCardProps {
 
 interface HighlightProps {
   value: string;
+  lastTransactionDate: string;
 }
 interface HighlightData {
   entries: HighlightProps;
@@ -29,9 +30,9 @@ export function Dashboard() {
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [transactions, setTransactions] = useState<DataListProps[]>([]);
   const [highlightData, setHighlightData] = useState<HighlightData>({
-    entries: { value: '' },
-    expenses: { value: '' },
-    total: { value: '' },
+    entries: { value: '', lastTransactionDate: '' },
+    expenses: { value: '', lastTransactionDate: '' },
+    total: { value: '', lastTransactionDate: '' },
   });
 
   async function fetchTransactions() {
@@ -74,27 +75,63 @@ export function Dashboard() {
       }
     );
     setTransactions(transactionsFormatted);
+
+    const lastTransactionsEntries = getLastTransactionDate(
+      transactions,
+      'positive'
+    );
+    const lastTransactionsExpenses = getLastTransactionDate(
+      transactions,
+      'negative'
+    );
+
+    const totalInterval = `01 a ${lastTransactionsExpenses}`;
+
     setHighlightData({
       entries: {
         value: entriesTotalSum.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
+        lastTransactionDate: `Última entrada dia ${lastTransactionsEntries}`,
       },
       expenses: {
         value: totalExpenses.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
+        lastTransactionDate: `Última saída dia ${lastTransactionsExpenses}`,
       },
       total: {
         value: total.toLocaleString('pt-BR', {
           style: 'currency',
           currency: 'BRL',
         }),
+        lastTransactionDate: totalInterval,
       },
     });
     setIsLoading(false);
+  }
+
+  function getLastTransactionDate(
+    transactionCollection: DataListProps[],
+    type: 'positive' | 'negative'
+  ): string {
+    const lastTransaction = new Date(
+      Math.max.apply(
+        Math,
+        transactionCollection
+          .filter((transaction: DataListProps) => transaction.type === type)
+          .map((transaction: DataListProps) =>
+            new Date(transaction.date).getTime()
+          )
+      )
+    );
+
+    return `${lastTransaction.getDate()} de ${lastTransaction.toLocaleString(
+      'pt-BR',
+      { month: 'long' }
+    )}`;
   }
 
   useEffect(() => {
@@ -113,9 +150,8 @@ export function Dashboard() {
     <Styled.Container>
       {isLoading ? (
         <LoadingContainer>
-          <ActivityIndicator color={theme.colors.primary} size="large" />
+          <ActivityIndicator color={theme.colors.primary} size='large' />
         </LoadingContainer>
-
       ) : (
         <>
           <Styled.Header>
@@ -131,7 +167,7 @@ export function Dashboard() {
                   <Styled.UserName>Lourenço</Styled.UserName>
                 </Styled.User>
               </Styled.UserInfo>
-              <Styled.LogoutButton onPress={() => { }}>
+              <Styled.LogoutButton onPress={() => {}}>
                 <Styled.Icon name='power' />
               </Styled.LogoutButton>
             </Styled.UserWrapper>
