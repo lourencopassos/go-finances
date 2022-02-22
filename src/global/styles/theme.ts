@@ -20,7 +20,7 @@ export default {
 
   fonts: {
     regular: 'Poppins_400Regular',
-    middle: 'Poppins_500Medium',
+    medium: 'Poppins_500Medium',
     bold: 'Poppins_700Bold',
   },
 };
