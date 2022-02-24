@@ -10,8 +10,10 @@ import {
   Title,
   SignInTitle,
   Footer,
+  FooterWrapper,
 } from './styles';
 import { RFValue } from 'react-native-responsive-fontsize';
+import { SocialSignInButton } from '../../components/SocialSignInButton';
 
 export function SignIn() {
   return (
@@ -29,7 +31,12 @@ export function SignIn() {
           Faça seu login com {'\n'} uma das contas abaixo
         </SignInTitle>
       </Header>
-      <Footer></Footer>
+      <Footer>
+        <FooterWrapper>
+          <SocialSignInButton title='Entrar com o Google' svg={GoogleLogo} />
+          <SocialSignInButton title='Entrar com Apple' svg={AppleLogo} />
+        </FooterWrapper>
+      </Footer>
     </Container>
   );
 }
